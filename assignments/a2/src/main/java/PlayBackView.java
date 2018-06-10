@@ -14,7 +14,7 @@ public class PlayBackView extends JPanel implements Observer {
     private Model model;
 
     //Create a new View.
-    public PlayBackView(Model model) {
+    PlayBackView(Model model) {
         this.setLayout(new FlowLayout());
 
         this.model = model;

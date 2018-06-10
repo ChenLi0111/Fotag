@@ -7,7 +7,7 @@ public class DrawView extends JPanel implements Observer {
     private Model model;
 
     //Create a new View.
-    public DrawView(Model model) {
+    DrawView(Model model) {
         // Hook up this observer so that it will be notified when the model
         // changes.
         this.model = model;
