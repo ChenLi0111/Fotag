@@ -10,18 +10,19 @@ public class PlayBackView extends JPanel implements Observer {
     private JButton start = new JButton("Start");
     private JButton end = new JButton("End");
 
-
     private Model model;
 
     //Create a new View.
     PlayBackView(Model model) {
-        this.setLayout(new FlowLayout());
-
         this.model = model;
-        this.add(play);
-        this.add(slider);
-        this.add(start);
-        this.add(end);
+
+        this.setLayout(new GridLayout());
+        // create a constraints object
+        GridBagConstraints gc = new GridBagConstraints();
+        this.add(play, gc);
+        this.add(slider, gc);
+        this.add(start, gc);
+        this.add(end, gc);
     }
 
     //Update with data from the model.

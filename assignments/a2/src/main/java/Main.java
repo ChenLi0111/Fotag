@@ -15,7 +15,7 @@ public class Main {
 		// tell Model about DrawView. 
 		model.addObserver(drawview);
 		
-		// create olorView, tell it about model (and controller)
+		// create ColorView, tell it about model (and controller)
 		ColorLineView colorlineview = new ColorLineView(model);
 		// tell Model about ColorLineView.
 		model.addObserver(colorlineview);
