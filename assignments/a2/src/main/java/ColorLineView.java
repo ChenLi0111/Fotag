@@ -24,22 +24,22 @@ public class ColorLineView extends JPanel implements Observer {
     private JButton thick_13 = new JButton();
 
     private void button_color() {
-        red_button.setIcon(new ImageIcon(getClass().getResource("red.png")));
-        blue_button.setIcon(new ImageIcon(getClass().getResource("blue.png")));
-        green_button.setIcon(new ImageIcon(getClass().getResource("green.png")));
-        orange_button.setIcon(new ImageIcon(getClass().getResource("orange.png")));
-        yellow_button.setIcon(new ImageIcon(getClass().getResource("yellow.png")));
-        pink_button.setIcon(new ImageIcon(getClass().getResource("pink.png")));
-        cyan_button.setIcon(new ImageIcon(getClass().getResource("cyan.png")));
+        red_button.setIcon(new ImageIcon("images/red.png"));
+        blue_button.setIcon(new ImageIcon("images/blue.png"));
+        green_button.setIcon(new ImageIcon("images/green.png"));
+        orange_button.setIcon(new ImageIcon("images/orange.png"));
+        yellow_button.setIcon(new ImageIcon("images/yellow.png"));
+        pink_button.setIcon(new ImageIcon("images/pink.png"));
+        cyan_button.setIcon(new ImageIcon("images/cyan.png"));
     }
 
     private void button_thick() {
-        thick_3.setIcon(new ImageIcon(getClass().getResource("3.png")));
-        thick_5.setIcon(new ImageIcon(getClass().getResource("5.png")));
-        thick_7.setIcon(new ImageIcon(getClass().getResource("7.png")));
-        thick_9.setIcon(new ImageIcon(getClass().getResource("9.png")));
-        thick_11.setIcon(new ImageIcon(getClass().getResource("11.png")));
-        thick_13.setIcon(new ImageIcon(getClass().getResource("13.png")));
+        thick_3.setIcon(new ImageIcon("images/3.png"));
+        thick_5.setIcon(new ImageIcon("images/5.png"));
+        thick_7.setIcon(new ImageIcon("images/7.png"));
+        thick_9.setIcon(new ImageIcon("images/9.png"));
+        thick_11.setIcon(new ImageIcon("images/11.png"));
+        thick_13.setIcon(new ImageIcon("images/13.png"));
     }
 
     //Create a new View.
