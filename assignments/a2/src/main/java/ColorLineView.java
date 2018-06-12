@@ -24,34 +24,13 @@ public class ColorLineView extends JPanel implements Observer {
     private JButton thick_13 = new JButton();
 
     private void button_color() {
-        red_button.setBackground(Color.red);
-        red_button.setOpaque(true);
-        red_button.setBorderPainted(false);
-
-        blue_button.setBackground(Color.blue);
-        blue_button.setOpaque(true);
-        blue_button.setForeground(Color.blue);
-        blue_button.setBorderPainted(false);
-
-        green_button.setBackground(Color.green);
-        green_button.setOpaque(true);
-        green_button.setBorderPainted(false);
-
-        orange_button.setBackground(Color.orange);
-        orange_button.setOpaque(true);
-        orange_button.setBorderPainted(false);
-
-        yellow_button.setBackground(Color.yellow);
-        yellow_button.setOpaque(true);
-        yellow_button.setBorderPainted(false);
-
-        pink_button.setBackground(Color.pink);
-        pink_button.setOpaque(true);
-        pink_button.setBorderPainted(false);
-
-        cyan_button.setBackground(Color.cyan);
-        cyan_button.setOpaque(true);
-        cyan_button.setBorderPainted(false);
+        red_button.setIcon(new ImageIcon(getClass().getResource("red.png")));
+        blue_button.setIcon(new ImageIcon(getClass().getResource("blue.png")));
+        green_button.setIcon(new ImageIcon(getClass().getResource("green.png")));
+        orange_button.setIcon(new ImageIcon(getClass().getResource("orange.png")));
+        yellow_button.setIcon(new ImageIcon(getClass().getResource("yellow.png")));
+        pink_button.setIcon(new ImageIcon(getClass().getResource("pink.png")));
+        cyan_button.setIcon(new ImageIcon(getClass().getResource("cyan.png")));
     }
 
     private void button_thick() {
@@ -76,19 +55,19 @@ public class ColorLineView extends JPanel implements Observer {
 
         // Add the components
         this.add(red_button);
-        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(Box.createRigidArea(new Dimension(0,3)));
         this.add(blue_button);
-        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(Box.createRigidArea(new Dimension(0,3)));
         this.add(green_button);
-        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(Box.createRigidArea(new Dimension(0,3)));
         this.add(orange_button);
-        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(Box.createRigidArea(new Dimension(0,3)));
         this.add(yellow_button);
-        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(Box.createRigidArea(new Dimension(0,3)));
         this.add(pink_button);
-        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(Box.createRigidArea(new Dimension(0,3)));
         this.add(cyan_button);
-        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(Box.createRigidArea(new Dimension(0,3)));
 
         button_thick();
         this.add(thick_3);
