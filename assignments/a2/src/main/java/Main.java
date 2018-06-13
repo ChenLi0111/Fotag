@@ -39,6 +39,7 @@ public class Main {
 		frame.getContentPane().add(colorlineview, BorderLayout.WEST);
 		frame.getContentPane().add(playbackview, BorderLayout.SOUTH);
 		frame.getContentPane().add(menubarview, BorderLayout.NORTH);
+		frame.getContentPane().add(drawview, BorderLayout.CENTER);
 
 		// setup window
 		frame.setPreferredSize(new Dimension(800,600));
