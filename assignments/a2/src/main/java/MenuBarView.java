@@ -1,25 +1,34 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observer;
 import java.util.Observable;
 
 public class MenuBarView extends JPanel implements Observer {
     private Model model;
 
-
     // create a menu
     private JMenu menu_file = new JMenu("File");
     private JMenuBar menubar_file = new JMenuBar();
 
-    private JMenu menu_choice = new JMenu("Choices");
-    private JMenuBar menubar_choice = new JMenuBar();
+    //private JMenu menu_choice = new JMenu("Choices");
+    //private JMenuBar menubar_choice = new JMenuBar();
 
     private void add_menu_file () {
         for (String s: new String[] {"Save", "Load", "New", "Exit" }) {
             // add this menu item to the menu
             JMenuItem mi = new JMenuItem(s);
             // set the listener when events occur
-            //mi.addActionListener(menuItemListener);
+            mi.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JMenuItem mi = (JMenuItem)e.getSource();
+                    if (mi.getText() == "Exit") {
+                        System.exit(0);
+                    }
+                }
+            });
             // add this menu item to the menu
             menu_file.add(mi);
         }
@@ -29,7 +38,7 @@ public class MenuBarView extends JPanel implements Observer {
             // add this menu item to the menu
             JMenuItem mi = new JMenuItem(s);
             // set the listener when events occur
-            //mi.addActionListener(menuItemListener);
+            mi.addActionListener(menuItemListener);
             // add this menu item to the menu
             menu_choice.add(mi);
         }
@@ -38,8 +47,7 @@ public class MenuBarView extends JPanel implements Observer {
 
     //Create a new View.
     MenuBarView(Model model) {
-        // Hook up this observer so that it will be notified when the model
-        // changes.
+        // Hook up this observer so that it will be notified when the model changes.
         this.model = model;
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         add_menu_file ();

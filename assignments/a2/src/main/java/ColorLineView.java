@@ -173,8 +173,7 @@ public class ColorLineView extends JPanel implements Observer {
 
     //Create a new View.
     ColorLineView(Model model) {
-        // Hook up this observer so that it will be notified when the model
-        // changes.
+        // Hook up this observer so that it will be notified when the model changes.
         this.model = model;
 
         // use BoxLayout
@@ -208,9 +207,11 @@ public class ColorLineView extends JPanel implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
         System.out.println("ColorLineView: Model changed!");
-        now_color.setBackground(model.get_color());
-        System.out.println("now_color");
 
+        //update selected color
+        now_color.setBackground(model.get_color());
+
+        //update selected thickness
         if (model.get_thickness() == 3.0f) {
             now_thickness.setIcon(temp_3);
         } else if (model.get_thickness() == 5.0f) {
