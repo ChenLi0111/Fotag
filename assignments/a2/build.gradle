@@ -8,3 +8,7 @@ task run(type:JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'Main'
 }
+
+dependencies {
+    compile files('src/main/java/vecmath.jar'); // change the path so it points to your vecmath.jar
+}
