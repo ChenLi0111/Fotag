@@ -15,7 +15,7 @@ public class MenuBarView extends JPanel implements Observer {
     private JMenuBar menubar_choice = new JMenuBar();
 
     private void add_menu_file () {
-        for (String s: new String[] {"apple", "orange", "banana", "pear" }) {
+        for (String s: new String[] {"Save", "Load", "New", "Exit" }) {
             // add this menu item to the menu
             JMenuItem mi = new JMenuItem(s);
             // set the listener when events occur
@@ -24,7 +24,7 @@ public class MenuBarView extends JPanel implements Observer {
             menu_file.add(mi);
         }
         menubar_file.add(menu_file);
-
+/*
         for (String s: new String[] {"1", "2", "3", "4" }) {
             // add this menu item to the menu
             JMenuItem mi = new JMenuItem(s);
@@ -33,7 +33,7 @@ public class MenuBarView extends JPanel implements Observer {
             // add this menu item to the menu
             menu_choice.add(mi);
         }
-        menubar_choice.add(menu_choice);
+        menubar_choice.add(menu_choice); */
     }
 
     //Create a new View.
@@ -45,8 +45,8 @@ public class MenuBarView extends JPanel implements Observer {
         add_menu_file ();
 
         this.add(menubar_file);
-        this.add(Box.createRigidArea(new Dimension(5, 0)));
-        this.add(menubar_choice);
+        //this.add(Box.createRigidArea(new Dimension(5, 0)));
+        //this.add(menubar_choice);
     }
 
     //Update with data from the model.

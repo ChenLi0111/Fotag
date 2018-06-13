@@ -12,11 +12,12 @@ public class Main {
 
 		// create DrawView, tell it about model (and controller)
 		DrawView drawview = new DrawView(model);
-		// tell Model about DrawView. 
+		// tell Model about DrawView.
 		model.addObserver(drawview);
 		
 		// create ColorView, tell it about model (and controller)
 		ColorLineView colorlineview = new ColorLineView(model);
+		colorlineview.setPreferredSize(new Dimension(150, 300));
 		// tell Model about ColorLineView.
 		model.addObserver(colorlineview);
 
