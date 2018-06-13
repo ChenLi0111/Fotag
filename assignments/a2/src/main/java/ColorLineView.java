@@ -16,6 +16,8 @@ public class ColorLineView extends JPanel implements Observer {
     private JButton orange_button = new JButton("");
     private JButton yellow_button = new JButton("");
     private JButton pink_button = new JButton("");
+    private JButton cyan_button = new JButton("");
+    private JButton custom_button = new JButton("Custom");
 
     private JButton thick_3 = new JButton();
     private JButton thick_5 = new JButton();
@@ -43,6 +45,7 @@ public class ColorLineView extends JPanel implements Observer {
         orange_button.setIcon(new ImageIcon("images/orange.png"));
         yellow_button.setIcon(new ImageIcon("images/yellow.png"));
         pink_button.setIcon(new ImageIcon("images/pink.png"));
+        cyan_button.setIcon(new ImageIcon("images/cyan.png"));
     }
 
     private void button_thick() {
@@ -107,6 +110,28 @@ public class ColorLineView extends JPanel implements Observer {
                 super.mouseClicked(e);
                 model.change_color(Color.pink);
                 System.out.println("changing pink");
+            }
+        });
+
+        cyan_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_color(Color.cyan);
+                System.out.println("changing cyan");
+            }
+        });
+
+        custom_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Color c = null;
+                c = JColorChooser.showDialog(null, "please select", c);
+                if (c == null) {
+                    c = model.get_color();
+                }
+                model.change_color(c);
+                System.out.println("changing custom");
             }
         });
 
@@ -177,7 +202,7 @@ public class ColorLineView extends JPanel implements Observer {
         this.model = model;
 
         // use BoxLayout
-        this.setLayout(new GridLayout(8,2));
+        this.setLayout(new GridLayout(9,2));
 
         config_color_button();
         config_thickness_button();
@@ -190,6 +215,8 @@ public class ColorLineView extends JPanel implements Observer {
         this.add(orange_button);
         this.add(yellow_button);
         this.add(pink_button);
+        this.add(cyan_button);
+        this.add(custom_button);
         button_thick();
         this.add(thick_3);
         this.add(thick_5);
