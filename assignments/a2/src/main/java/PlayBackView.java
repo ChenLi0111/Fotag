@@ -28,8 +28,6 @@ public class PlayBackView extends JPanel implements Observer {
     //Update with data from the model.
     @Override
     public void update(Observable arg0, Object arg1) {
-        if (model.temp == 1) {
-            System.out.println("PlayBackView: Model changed!");
-        }
+        System.out.println("PlayBackView: Model changed!");
     }
 }

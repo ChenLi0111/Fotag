@@ -12,21 +12,19 @@ public class DrawView extends JPanel implements Observer {
 
     //Create a new View.
     DrawView(Model model) {
-        // Hook up this observer so that it will be notified when the model
-        // changes.
+        // Hook up this observer so that it will be notified when the model changes.
         this.model = model;
 
         this.addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e) {
-
                 shape = new Shape();
-                // change shape type
-//                shape.setIsClosed(true);
-//                shape.setIsFilled(true);
-                shape.setColour(Color.RED);
-
-                // try setting scale to something other than 1
+                // set shape color
+                shape.setColour(model.get_color());
+                //change shape
+                shape.set_thickness(model.get_thickness());
+                // set scale
                 shape.setScale(1.0f);
+                model.add_shape(shape);
 
                 repaint();
             }
@@ -47,16 +45,18 @@ public class DrawView extends JPanel implements Observer {
         Graphics2D g2 = (Graphics2D) g; // cast to get 2D drawing methods
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,  // antialiasing look nicer
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        System.out.println("here");
-        if (shape != null)
-            shape.draw(g2);
+        for (Shape s: model.get_shape_collection()) {
+            if (s != null) {
+                s.draw(g2);
+            }
+        }
     }
 
     //Update with data from the model.
     @Override
     public void update(Observable arg0, Object arg1) {
-        if (model.temp == 1) {
-            System.out.println("DrawView: Model changed!");
-        }
+        revalidate();
+        repaint();
+        System.out.println("DrawView: Model changed!");
     }
 }

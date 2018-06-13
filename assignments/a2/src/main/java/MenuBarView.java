@@ -52,8 +52,6 @@ public class MenuBarView extends JPanel implements Observer {
     //Update with data from the model.
     @Override
     public void update(Observable arg0, Object arg1) {
-        if (model.temp == 1) {
-            System.out.println("MenuBarView: updateView");
-        }
+        System.out.println("MenuBarView: updateView");
     }
 }

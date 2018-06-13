@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observer;
 import java.util.Observable;
 import javax.swing.JButton;
@@ -22,12 +24,17 @@ public class ColorLineView extends JPanel implements Observer {
     private JButton thick_11 = new JButton();
     private JButton thick_13 = new JButton();
 
+    private ImageIcon temp_3 = new ImageIcon("images/3.png");
+    private ImageIcon temp_5 = new ImageIcon("images/5.png");
+    private ImageIcon temp_7 = new ImageIcon("images/7.png");
+    private ImageIcon temp_9 = new ImageIcon("images/9.png");
+    private ImageIcon temp_11 = new ImageIcon("images/11.png");
+    private ImageIcon temp_13 = new ImageIcon("images/13.png");
+
     private JLabel current_color = new JLabel("Color");
-    private ImageIcon temp_1 = new ImageIcon("images/red.png");
-    private JLabel now_color = new JLabel(temp_1, JLabel.CENTER);
+    private JLabel now_color = new JLabel("");
     private JLabel current_thickness = new JLabel("Thickness");
-    private ImageIcon temp_2 = new ImageIcon("images/3.png");
-    private JLabel now_thickness = new JLabel(temp_2, JLabel.CENTER);
+    private JLabel now_thickness = new JLabel(new ImageIcon("images/3.png"), JLabel.CENTER);
 
     private void button_color() {
         red_button.setIcon(new ImageIcon("images/red.png"));
@@ -39,12 +46,129 @@ public class ColorLineView extends JPanel implements Observer {
     }
 
     private void button_thick() {
-        thick_3.setIcon(new ImageIcon("images/3.png"));
-        thick_5.setIcon(new ImageIcon("images/5.png"));
-        thick_7.setIcon(new ImageIcon("images/7.png"));
-        thick_9.setIcon(new ImageIcon("images/9.png"));
-        thick_11.setIcon(new ImageIcon("images/11.png"));
-        thick_13.setIcon(new ImageIcon("images/13.png"));
+        thick_3.setIcon(temp_3);
+        thick_5.setIcon(temp_5);
+        thick_7.setIcon(temp_7);
+        thick_9.setIcon(temp_9);
+        thick_11.setIcon(temp_11);
+        thick_13.setIcon(temp_13);
+    }
+
+    private void config_color_button() {
+        System.out.println("config color");
+        red_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_color(Color.red);
+                System.out.println("changing red");
+            }
+        });
+
+        blue_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_color(Color.blue);
+                System.out.println("changing blue");
+            }
+        });
+
+        green_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_color(Color.green);
+                System.out.println("changing green");
+            }
+        });
+
+        orange_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_color(Color.orange);
+                System.out.println("changing orange");
+            }
+        });
+
+        yellow_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_color(Color.yellow);
+                System.out.println("changing yellow");
+            }
+        });
+
+        pink_button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_color(Color.pink);
+                System.out.println("changing pink");
+            }
+        });
+
+        now_color.setBackground(Color.red);
+        now_color.setOpaque(true);
+    }
+
+    private void config_thickness_button() {
+        System.out.println("config thickness");
+        thick_3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_thickness(3.0f);
+                System.out.println("changing 3");
+            }
+        });
+
+        thick_5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_thickness(5.0f);
+                System.out.println("changing 5");
+            }
+        });
+
+        thick_7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_thickness(7.0f);
+                System.out.println("changing 7");
+            }
+        });
+
+        thick_9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_thickness(9.0f);
+                System.out.println("changing 9");
+            }
+        });
+
+        thick_11.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_thickness(11.0f);
+                System.out.println("changing 11");
+            }
+        });
+
+        thick_13.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.change_thickness(13.0f);
+                System.out.println("changing 13");
+            }
+        });
     }
 
     //Create a new View.
@@ -55,6 +179,9 @@ public class ColorLineView extends JPanel implements Observer {
 
         // use BoxLayout
         this.setLayout(new GridLayout(8,2));
+
+        config_color_button();
+        config_thickness_button();
 
         // Add the components
         button_color();
@@ -80,8 +207,22 @@ public class ColorLineView extends JPanel implements Observer {
     //Update with data from the model.i
     @Override
     public void update(Observable arg0, Object arg1) {
-        if (model.temp == 1) {
-            System.out.println("ColorLineView: Model changed!");
+        System.out.println("ColorLineView: Model changed!");
+        now_color.setBackground(model.get_color());
+        System.out.println("now_color");
+
+        if (model.get_thickness() == 3.0f) {
+            now_thickness.setIcon(temp_3);
+        } else if (model.get_thickness() == 5.0f) {
+            now_thickness.setIcon(temp_5);
+        } else if (model.get_thickness() == 7.0f) {
+            now_thickness.setIcon(temp_7);
+        } else if (model.get_thickness() == 9.0f) {
+            now_thickness.setIcon(temp_9);
+        } else if (model.get_thickness() == 11.0f) {
+            now_thickness.setIcon(temp_11);
+        } else if (model.get_thickness() == 13.0f) {
+            now_thickness.setIcon(temp_13);
         }
     }
 }

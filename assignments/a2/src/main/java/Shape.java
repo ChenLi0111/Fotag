@@ -58,8 +58,12 @@ class Shape {
     }
 
     // drawing attributes
-    Color colour = Color.BLACK;
+    Color colour = Color.red;
     float strokeThickness = 3.0f;
+
+    public void set_thickness(float f) {
+        strokeThickness = f;
+    }
 
     public Color getColour() {
         return colour;
