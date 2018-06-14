@@ -1,12 +1,13 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Observer;
 import java.util.Observable;
 
 public class MenuBarView extends JPanel implements Observer {
     private Model model;
+    private JFileChooser file_chooser = new JFileChooser();
 
     // create a menu
     private JMenu menu_file = new JMenu("File");
@@ -25,7 +26,15 @@ public class MenuBarView extends JPanel implements Observer {
                 public void actionPerformed(ActionEvent e) {
                     JMenuItem mi = (JMenuItem)e.getSource();
                     if (mi.getText() == "Exit") {
-                        System.exit(0);
+                        model.exit();
+                    } else if (mi.getText() == "New") {
+                        model.new_file();
+                    } else if (mi.getText() == "Load") {
+                        model.load_file();
+                        call_load();
+                    } else if (mi.getText() == "Save") {
+                        model.save_file();
+                        call_save();
                     }
                 }
             });
@@ -33,7 +42,7 @@ public class MenuBarView extends JPanel implements Observer {
             menu_file.add(mi);
         }
         menubar_file.add(menu_file);
-/*
+        /*
         for (String s: new String[] {"1", "2", "3", "4" }) {
             // add this menu item to the menu
             JMenuItem mi = new JMenuItem(s);
@@ -55,6 +64,47 @@ public class MenuBarView extends JPanel implements Observer {
         this.add(menubar_file);
         //this.add(Box.createRigidArea(new Dimension(5, 0)));
         //this.add(menubar_choice);
+    }
+
+    private void call_save() {
+        try{
+            FileOutputStream fos = new FileOutputStream("temp.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            System.out.println("model " +Integer.toString(model.get_shape_collection().size()));
+            oos.writeObject(model);
+            System.out.println("saved!");
+            oos.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void call_load() {
+        try {
+            FileInputStream fi = new FileInputStream("temp.ser");
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            Model temp = (Model) oi.readObject();
+            System.out.println("temp " +Integer.toString(temp.get_shape_collection().size()));
+            model.change_color(temp.get_color());
+            model.change_thickness(temp.get_thickness());
+            System.out.println("model 1 " +Integer.toString(model.get_shape_collection().size()));
+            model.clear_collection();
+            System.out.println("model 2 " +Integer.toString(model.get_shape_collection().size()));
+            for (Shape s: temp.get_shape_collection()) {
+                if (s != null) {
+                    model.add_shape(s);
+                }
+            }
+            System.out.println("model 3 " +Integer.toString(model.get_shape_collection().size()));
+            oi.close();
+            fi.close();
+        } catch (IOException e_1) {
+            e_1.printStackTrace();
+        } catch (ClassNotFoundException e_2) {
+            e_2.printStackTrace();
+            return;
+        }
     }
 
     //Update with data from the model.

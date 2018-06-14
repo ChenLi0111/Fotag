@@ -1,14 +1,11 @@
-/*
- *  Shape: See ShapeDemo for an example how to use this class.
- *
- */
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.vecmath.*;
 
 // simple shape model class
-class Shape {
+class Shape implements Serializable {
 
     // shape points
     ArrayList<Point2d> points;

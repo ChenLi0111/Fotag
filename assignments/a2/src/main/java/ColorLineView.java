@@ -126,7 +126,7 @@ public class ColorLineView extends JPanel implements Observer {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Color c = null;
-                c = JColorChooser.showDialog(null, "please select", c);
+                c = JColorChooser.showDialog(null, "Please select", c);
                 if (c == null) {
                     c = model.get_color();
                 }
