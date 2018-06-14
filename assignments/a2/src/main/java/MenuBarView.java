@@ -107,9 +107,9 @@ public class MenuBarView extends JPanel implements Observer {
             File file = file_chooser.getSelectedFile();
 
             try {
-                FileInputStream fi = new FileInputStream(file);
-                ObjectInputStream oi = new ObjectInputStream(fi);
-                Model temp = (Model) oi.readObject();
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                Model temp = (Model) ois.readObject();
                 //System.out.println("temp " + Integer.toString(temp.get_shape_collection().size()));
                 model.change_color(temp.get_color());
                 model.change_thickness(temp.get_thickness());
@@ -122,8 +122,8 @@ public class MenuBarView extends JPanel implements Observer {
                     }
                 }
                 //System.out.println("model 3 " + Integer.toString(model.get_shape_collection().size()));
-                oi.close();
-                fi.close();
+                ois.close();
+                fis.close();
             } catch (IOException e_1) {
                 e_1.printStackTrace();
             } catch (ClassNotFoundException e_2) {
