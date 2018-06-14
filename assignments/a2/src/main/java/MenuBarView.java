@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -7,7 +9,6 @@ import java.util.Observable;
 
 public class MenuBarView extends JPanel implements Observer {
     private Model model;
-    private JFileChooser file_chooser = new JFileChooser();
 
     // create a menu
     private JMenu menu_file = new JMenu("File");
@@ -26,14 +27,19 @@ public class MenuBarView extends JPanel implements Observer {
                 public void actionPerformed(ActionEvent e) {
                     JMenuItem mi = (JMenuItem)e.getSource();
                     if (mi.getText() == "Exit") {
-                        model.exit();
+                        if (model.get_shape_collection().size() > 0) {
+                            call_save();
+                        }
+                        System.exit(0);
                     } else if (mi.getText() == "New") {
-                        model.new_file();
+                        call_save();
+                        call_new();
                     } else if (mi.getText() == "Load") {
-                        model.load_file();
+                        if (model.get_shape_collection().size() > 0) {
+                            call_save();
+                        }
                         call_load();
                     } else if (mi.getText() == "Save") {
-                        model.save_file();
                         call_save();
                     }
                 }
@@ -67,44 +73,70 @@ public class MenuBarView extends JPanel implements Observer {
     }
 
     private void call_save() {
-        try{
-            FileOutputStream fos = new FileOutputStream("temp.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            System.out.println("model " +Integer.toString(model.get_shape_collection().size()));
-            oos.writeObject(model);
-            System.out.println("saved!");
-            oos.close();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        JFileChooser file_chooser = new JFileChooser();
+        int save_or_not = file_chooser.showSaveDialog(null);
+
+        if (save_or_not == 1) { // cancel
+            return;
+        } else {
+            File file = file_chooser.getSelectedFile();
+            try{
+                FileOutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                //System.out.println("model " + Integer.toString(model.get_shape_collection().size()));
+                oos.writeObject(model);
+                //System.out.println("saved!");
+                oos.close();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private void call_load() {
-        try {
-            FileInputStream fi = new FileInputStream("temp.ser");
-            ObjectInputStream oi = new ObjectInputStream(fi);
-            Model temp = (Model) oi.readObject();
-            System.out.println("temp " +Integer.toString(temp.get_shape_collection().size()));
-            model.change_color(temp.get_color());
-            model.change_thickness(temp.get_thickness());
-            System.out.println("model 1 " +Integer.toString(model.get_shape_collection().size()));
-            model.clear_collection();
-            System.out.println("model 2 " +Integer.toString(model.get_shape_collection().size()));
-            for (Shape s: temp.get_shape_collection()) {
-                if (s != null) {
-                    model.add_shape(s);
-                }
-            }
-            System.out.println("model 3 " +Integer.toString(model.get_shape_collection().size()));
-            oi.close();
-            fi.close();
-        } catch (IOException e_1) {
-            e_1.printStackTrace();
-        } catch (ClassNotFoundException e_2) {
-            e_2.printStackTrace();
+        JFileChooser file_chooser = new JFileChooser();
+
+        FileNameExtensionFilter file_ext_filter = new FileNameExtensionFilter("ser file", "ser");
+        file_chooser.setFileFilter(file_ext_filter);
+
+        int load_or_not = file_chooser.showOpenDialog(null);
+        if (load_or_not == 1) { // cancel
             return;
+        } else { // load
+            File file = file_chooser.getSelectedFile();
+
+            try {
+                FileInputStream fi = new FileInputStream(file);
+                ObjectInputStream oi = new ObjectInputStream(fi);
+                Model temp = (Model) oi.readObject();
+                //System.out.println("temp " + Integer.toString(temp.get_shape_collection().size()));
+                model.change_color(temp.get_color());
+                model.change_thickness(temp.get_thickness());
+                //System.out.println("model 1 " + Integer.toString(model.get_shape_collection().size()));
+                model.clear_collection();
+                //System.out.println("model 2 " + Integer.toString(model.get_shape_collection().size()));
+                for (Shape s: temp.get_shape_collection()) {
+                    if (s != null) {
+                        model.add_shape(s);
+                    }
+                }
+                //System.out.println("model 3 " + Integer.toString(model.get_shape_collection().size()));
+                oi.close();
+                fi.close();
+            } catch (IOException e_1) {
+                e_1.printStackTrace();
+            } catch (ClassNotFoundException e_2) {
+                e_2.printStackTrace();
+                return;
+            }
         }
+    }
+
+    private void call_new() {
+        model.clear_collection();
+        model.change_thickness(3.0f);
+        model.change_color(Color.red);
     }
 
     //Update with data from the model.

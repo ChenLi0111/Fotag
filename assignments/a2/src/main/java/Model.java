@@ -7,11 +7,6 @@ public class Model extends Observable implements Serializable {
     private  ArrayList<Shape> shape_collection = new ArrayList<Shape>();
     private Color select_color = Color.red;
     private float select_thickness = 3.0f;
-    private boolean save_f = false;
-    private boolean load_f = false;
-    private boolean new_f = false;
-    private boolean exit_f = false;
-    private int size_1;
 
     Model() {
         setChanged();
@@ -49,38 +44,5 @@ public class Model extends Observable implements Serializable {
 
     public float get_thickness() {
         return select_thickness;
-    }
-
-    public void save_file() {
-        save_f = true;
-    }
-
-    public boolean get_save_f() {
-        return save_f;
-    }
-
-    public void load_file() {
-        load_f = true;
-    }
-
-    public boolean get_load_f() {
-        return load_f;
-    }
-
-    public void new_file() {
-        new_f = true;
-    }
-
-    public boolean get_new_f() {
-        return new_f;
-    }
-
-    public void exit() {
-        save_f = true;
-        System.exit(0);
-    }
-
-    public boolean get_exit_f() {
-        return exit_f;
     }
 }
