@@ -14,10 +14,14 @@ public class Model extends Observable implements Serializable {
 
     public void add_shape(Shape s) {
         shape_collection.add(s);
+        setChanged();
+        notifyObservers();
     }
     
     public void clear_collection() {
         shape_collection.clear();
+        setChanged();
+        notifyObservers();
     }
 
     public ArrayList<Shape> get_shape_collection() {
