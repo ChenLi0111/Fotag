@@ -41,15 +41,19 @@ public class DrawView extends JPanel implements Observer {
     // custom graphics drawing
     @Override
     public void paintComponent(Graphics g) {
+        setBackground(Color.white);
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g; // cast to get 2D drawing methods
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,  // antialiasing look nicer
                 RenderingHints.VALUE_ANTIALIAS_ON);
+
         for (Shape s: model.get_shape_collection()) {
             if (s != null) {
                 s.draw(g2);
             }
         }
+
+
     }
 
     //Update with data from the model.
