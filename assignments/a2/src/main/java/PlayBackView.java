@@ -10,7 +10,7 @@ public class PlayBackView extends JPanel implements Observer {
     private int min_stroke = 0;
 
     private JButton play = new JButton("Play");
-    private JSlider slider = new JSlider(min_stroke, max_stroke, max_stroke);
+    private JSlider slider = new JSlider(min_stroke, max_stroke, min_stroke);
     private JButton start = new JButton("Start");
     private JButton end = new JButton("End");
 
@@ -52,7 +52,7 @@ public class PlayBackView extends JPanel implements Observer {
         }
 
         if (model.get_need_change_slider() == true) {
-            slider.setValue(100);
+            slider.setValue(max_stroke);
             model.set_need_change_slider(false);
         }
     }
