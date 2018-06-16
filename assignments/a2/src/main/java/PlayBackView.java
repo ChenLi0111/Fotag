@@ -22,12 +22,16 @@ public class PlayBackView extends JPanel implements Observer {
     PlayBackView(Model model) {
         this.model = model;
 
-        this.setLayout(new GridLayout());
+        this.setLayout(new GridBagLayout());
         // create a constraints object
         GridBagConstraints gc = new GridBagConstraints();
+        gc.fill = GridBagConstraints.HORIZONTAL;
+        gc.weightx = 0.1; // the proportion of space to give this column
         this.add(play, gc);
         config_slider();
+        gc.weightx = 0.7; // the proportion of space to give this column
         this.add(slider, gc);
+        gc.weightx = 0.1; // the proportion of space to give this column
         this.add(start, gc);
         this.add(end, gc);
     }
