@@ -12,6 +12,10 @@ public class PlayBackView extends JPanel implements Observer {
 
     private Model model;
 
+    private void config_slider() {
+        slider.setPaintTicks(true);
+    }
+
     //Create a new View.
     PlayBackView(Model model) {
         this.model = model;
