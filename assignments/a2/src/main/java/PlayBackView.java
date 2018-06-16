@@ -20,7 +20,6 @@ public class PlayBackView extends JPanel implements Observer {
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 JSlider s = (JSlider)e.getSource();
-                //System.out.println(s.getValue());
                 model.set_play_prentage(s.getValue());
             }
         });
@@ -50,6 +49,11 @@ public class PlayBackView extends JPanel implements Observer {
         if (number_stroke > 0) {
             float space = (max_stroke - min_stroke) / number_stroke;
             slider.setMajorTickSpacing((int) space);
+        }
+
+        if (model.get_need_change_slider() == true) {
+            slider.setValue(100);
+            model.set_need_change_slider(false);
         }
     }
 

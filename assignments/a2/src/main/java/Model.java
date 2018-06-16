@@ -1,4 +1,3 @@
-import javax.vecmath.Point2d;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.Observable;
@@ -11,6 +10,8 @@ public class Model extends Observable implements Serializable {
 
     private int slider_pre = 0;
     private ArrayList<Shape> print_shape_collection = new ArrayList<Shape>();
+
+    private boolean need_change_slider = false;
 
     Model() {
         setChanged();
@@ -68,12 +69,24 @@ public class Model extends Observable implements Serializable {
         print_shape_collection.add(temp);
     }
 
+    public boolean get_need_change_slider() {
+        return need_change_slider;
+    }
+
+    public void set_need_change_slider(boolean b) {
+        need_change_slider = b;
+    }
+
     public void add_shape(Shape s) {
-        //System.out.println("before: " + Integer.toString(shape_collection.size()));
-        shape_collection.add(s);
-        //System.out.println("before: " + Integer.toString(shape_collection.size()));
-        print_shape_collection.add(s);
+        if (slider_pre != 100) {
+            shape_collection.clear();
+            for (Shape ss : print_shape_collection) {
+                shape_collection.add(ss);
+            }
+        }
         slider_pre = 100;
+        shape_collection.add(s);
+        need_change_slider = true;
         setChanged();
         notifyObservers();
     }
