@@ -1,20 +1,29 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.Observer;
 import java.util.Observable;
 
 public class PlayBackView extends JPanel implements Observer {
-    private int max_stroke = 200;
+    private int max_stroke = 100;
     private int min_stroke = 0;
 
     private JButton play = new JButton("Play");
-    private JSlider slider = new JSlider(min_stroke, max_stroke, 0);
+    private JSlider slider = new JSlider(min_stroke, max_stroke, max_stroke);
     private JButton start = new JButton("Start");
     private JButton end = new JButton("End");
 
     private Model model;
 
     private void config_slider() {
+        slider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                JSlider s = (JSlider)e.getSource();
+                //System.out.println(s.getValue());
+                model.set_play_prentage(s.getValue());
+            }
+        });
         slider.setPaintTicks(true);
     }
 

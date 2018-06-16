@@ -8,7 +8,7 @@ import javax.vecmath.*;
 class Shape implements Serializable {
 
     // shape points
-    ArrayList<Point2d> points;
+    private ArrayList<Point2d> points;
 
     public void clearPoints() {
         points = new ArrayList<Point2d>();
@@ -26,6 +26,10 @@ class Shape implements Serializable {
     public void addPoint(double x, double y) {
         if (points == null) clearPoints();
         addPoint(new Point2d(x, y));
+    }
+
+    public ArrayList<Point2d> get_points() {
+        return points;
     }
 
     public int npoints() {

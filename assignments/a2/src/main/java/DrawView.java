@@ -1,7 +1,9 @@
 import javax.swing.*;
+import javax.vecmath.Point2d;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.util.Observer;
 import java.util.Observable;
 
@@ -47,9 +49,18 @@ public class DrawView extends JPanel implements Observer {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,  // antialiasing look nicer
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        for (Shape s: model.get_shape_collection()) {
-            if (s != null) {
-                s.draw(g2);
+        if (model.get_slider_pre() != 100) {
+            System.out.println("here");
+            for (Shape s: model.get_print_shape_collection()) {
+                if (s != null) {
+                    s.draw(g2);
+                }
+            }
+        } else {
+            for (Shape s: model.get_shape_collection()) {
+                if (s != null) {
+                    s.draw(g2);
+                }
             }
         }
 
