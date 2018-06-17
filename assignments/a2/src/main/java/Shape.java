@@ -144,21 +144,4 @@ class Shape implements Serializable {
         // reset the transform to what it was before we drew the shape
 //        g2.setTransform(M);            
     }
-
-
-    // let shape handle its own hit testing
-    // (x,y) is the point to test against
-    // (x,y) needs to be in same coordinate frame as shape, you could add
-    // a panel-to-shape transform as an extra parameter to this function
-    // (note this isn't good separation of shape Controller from shape Model)    
-    public boolean hittest(double x, double y)
-    {
-        if (points != null) {
-
-            // TODO Implement
-
-        }
-
-        return false;
-    }
 }

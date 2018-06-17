@@ -32,6 +32,7 @@ public class Model extends Observable implements Serializable {
             }
             if (slider_pre == 100) {
                 play = false;
+                timer.stop();
             }
         }
     });

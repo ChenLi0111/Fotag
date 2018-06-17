@@ -52,6 +52,7 @@ public class PlayBackView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.set_start();
+                //slider.setValue(0);
                 System.out.println("start");
             }
         });
