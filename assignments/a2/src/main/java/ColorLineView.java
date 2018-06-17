@@ -64,7 +64,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_color(Color.red);
-                System.out.println("changing red");
+                //System.out.println("changing red");
             }
         });
 
@@ -73,7 +73,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_color(Color.blue);
-                System.out.println("changing blue");
+                //System.out.println("changing blue");
             }
         });
 
@@ -82,7 +82,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_color(Color.green);
-                System.out.println("changing green");
+                //System.out.println("changing green");
             }
         });
 
@@ -91,7 +91,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_color(Color.orange);
-                System.out.println("changing orange");
+                //System.out.println("changing orange");
             }
         });
 
@@ -100,7 +100,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_color(Color.yellow);
-                System.out.println("changing yellow");
+                //System.out.println("changing yellow");
             }
         });
 
@@ -109,7 +109,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_color(Color.pink);
-                System.out.println("changing pink");
+                //System.out.println("changing pink");
             }
         });
 
@@ -118,7 +118,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_color(Color.cyan);
-                System.out.println("changing cyan");
+                //System.out.println("changing cyan");
             }
         });
 
@@ -131,7 +131,7 @@ public class ColorLineView extends JPanel implements Observer {
                     c = model.get_color();
                 }
                 model.change_color(c);
-                System.out.println("changing custom");
+                //System.out.println("changing custom");
             }
         });
 
@@ -146,7 +146,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_thickness(3.0f);
-                System.out.println("changing 3");
+                //System.out.println("changing 3");
             }
         });
 
@@ -155,7 +155,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_thickness(5.0f);
-                System.out.println("changing 5");
+                //System.out.println("changing 5");
             }
         });
 
@@ -164,7 +164,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_thickness(7.0f);
-                System.out.println("changing 7");
+                //System.out.println("changing 7");
             }
         });
 
@@ -173,7 +173,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_thickness(9.0f);
-                System.out.println("changing 9");
+                //System.out.println("changing 9");
             }
         });
 
@@ -182,7 +182,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_thickness(11.0f);
-                System.out.println("changing 11");
+                //System.out.println("changing 11");
             }
         });
 
@@ -191,7 +191,7 @@ public class ColorLineView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.change_thickness(13.0f);
-                System.out.println("changing 13");
+                //System.out.println("changing 13");
             }
         });
     }

@@ -28,15 +28,21 @@ public class MenuBarView extends JPanel implements Observer {
                     JMenuItem mi = (JMenuItem)e.getSource();
                     if (mi.getText() == "Exit") {
                         if (model.get_shape_collection().size() > 0) {
-                            call_save();
+                            if (model.get_has_saved() != true) {
+                                call_save();
+                            }
                         }
                         System.exit(0);
                     } else if (mi.getText() == "New") {
-                        call_save();
+                        if (model.get_has_saved() != true) {
+                            call_save();
+                        }
                         call_new();
                     } else if (mi.getText() == "Load") {
                         if (model.get_shape_collection().size() > 0) {
-                            call_save();
+                            if (model.get_has_saved() != true) {
+                                call_save();
+                            }
                         }
                         call_load();
                     } else if (mi.getText() == "Save") {
@@ -84,6 +90,7 @@ public class MenuBarView extends JPanel implements Observer {
                 FileOutputStream fos = new FileOutputStream(file);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 //System.out.println("model " + Integer.toString(model.get_shape_collection().size()));
+                model.save_status();
                 oos.writeObject(model);
                 //System.out.println("saved!");
                 oos.close();
@@ -92,6 +99,7 @@ public class MenuBarView extends JPanel implements Observer {
                 e.printStackTrace();
             }
         }
+        model.set_has_saved(true);
     }
 
     private void call_load() {
@@ -116,6 +124,7 @@ public class MenuBarView extends JPanel implements Observer {
                 //System.out.println("model 1 " + Integer.toString(model.get_shape_collection().size()));
                 model.clear_collection();
                 //System.out.println("model 2 " + Integer.toString(model.get_shape_collection().size()));
+
                 for (Shape s: temp.get_shape_collection()) {
                     if (s != null) {
                         model.add_shape(s);

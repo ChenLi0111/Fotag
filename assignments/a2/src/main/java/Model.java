@@ -18,6 +18,16 @@ public class Model extends Observable implements Serializable {
 
     private boolean play = false;
 
+    private boolean has_saved = false;
+
+    public void set_has_saved(boolean b) {
+        has_saved = b;
+    }
+
+    public boolean get_has_saved() {
+        return has_saved;
+    }
+
     private javax.swing.Timer timer = new javax.swing.Timer(50, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -27,7 +37,7 @@ public class Model extends Observable implements Serializable {
                 set_play_prentage(slider_pre);
                 update_collection_now();
                 need_change_slider = true;
-                System.out.println(Integer.toString(slider_pre));
+                //System.out.println(Integer.toString(slider_pre));
             }
             if (slider_pre == 100) {
                 play = false;
@@ -43,6 +53,7 @@ public class Model extends Observable implements Serializable {
     public void set_play() {
         if (shape_collection.size() == 0) {return;}
         play = true;
+        with_timer = true;
         timer.start();
     }
 
@@ -71,12 +82,26 @@ public class Model extends Observable implements Serializable {
     public void set_play_prentage(int i) {
         slider_pre = i;
         update_collection_now();
+        has_saved = false;
     }
 
     public void update_collection_now() {
         update_collection();
         setChanged();
         notifyObservers();
+    }
+
+    public void save_status() {
+        if (slider_pre != 100) {
+            shape_collection.clear();
+            shape_collection.addAll(print_shape_collection);
+        }
+        slider_pre = 100;
+        print_shape_collection.clear();
+        need_change_slider = false;
+        with_timer = false;
+        play = false;
+        has_saved = false;
     }
 
     public int get_slider_pre() {
@@ -142,12 +167,14 @@ public class Model extends Observable implements Serializable {
         slider_pre = 100;
         shape_collection.add(s);
         need_change_slider = true;
+        has_saved = false;
         setChanged();
         notifyObservers();
     }
     
     public void clear_collection() {
         shape_collection.clear();
+        print_shape_collection.clear();
         setChanged();
         notifyObservers();
     }

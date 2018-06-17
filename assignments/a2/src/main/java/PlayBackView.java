@@ -35,7 +35,7 @@ public class PlayBackView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.set_play();
-                System.out.println("play");
+                //System.out.println("play");
             }
         });
 
@@ -44,7 +44,7 @@ public class PlayBackView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 model.set_end();
-                System.out.println("end");
+                //System.out.println("end");
             }
         });
 
@@ -54,7 +54,7 @@ public class PlayBackView extends JPanel implements Observer {
                 super.mouseClicked(e);
                 model.set_start();
                 //slider.setValue(0);
-                System.out.println("start");
+                //System.out.println("start");
             }
         });
     }
@@ -86,11 +86,11 @@ public class PlayBackView extends JPanel implements Observer {
         }
 
         if (model.get_need_change_slider() == true && model.get_with_timer() == true) {
-            System.out.println("first if");
+            //System.out.println("first if");
             slider.setValue(model.get_slider_pre());
             model.set_need_change_slider(false);
         } else if (model.get_need_change_slider() == true) {
-            System.out.println("second if");
+            //System.out.println("second if");
             slider.setValue(max_stroke);
             model.set_need_change_slider(false);
         }
@@ -102,6 +102,6 @@ public class PlayBackView extends JPanel implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
         update_slider();
-        System.out.println("PlayBackView: Model changed!");
+        //System.out.println("PlayBackView: Model changed!");
     }
 }
