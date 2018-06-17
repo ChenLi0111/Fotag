@@ -17,6 +17,7 @@ public class Model extends Observable implements Serializable {
     private boolean with_timer = false;
 
     private boolean play = false;
+    private boolean play_back = false;
 
     private boolean has_saved = false;
 
@@ -31,7 +32,7 @@ public class Model extends Observable implements Serializable {
     private javax.swing.Timer timer = new javax.swing.Timer(50, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (slider_pre < 100 && play == true) {
+            if (slider_pre < 100 && play == true && play_back == false) {
                 //System.out.println(Integer.toString(slider_pre));
                 slider_pre = slider_pre + 1;
                 set_play_prentage(slider_pre);
@@ -39,8 +40,21 @@ public class Model extends Observable implements Serializable {
                 need_change_slider = true;
                 //System.out.println(Integer.toString(slider_pre));
             }
-            if (slider_pre == 100) {
+            if (slider_pre == 100 && play_back == false) {
                 play = false;
+                timer.stop();
+            }
+
+            if (play_back == true) {
+                //System.out.println(Integer.toString(slider_pre));
+                slider_pre = slider_pre - 1;
+                set_play_prentage(slider_pre);
+                update_collection_now();
+                need_change_slider = true;
+                //System.out.println(Integer.toString(slider_pre));
+            }
+            if (slider_pre == 0 && play_back == true) {
+                play_back = false;
                 timer.stop();
             }
         }
@@ -61,6 +75,7 @@ public class Model extends Observable implements Serializable {
         if (shape_collection.size() == 0) {return;}
         set_play_prentage(100);
         need_change_slider = true;
+        play_back = false;
         setChanged();
         notifyObservers();
     }
@@ -72,6 +87,15 @@ public class Model extends Observable implements Serializable {
         need_change_slider = true;
         play = true;
         with_timer = true;
+        timer.start();
+    }
+
+    public void set_play_back() {
+        set_end();
+        if (shape_collection.size() == 0) {return;}
+        play_back = true;
+        with_timer = true;
+        need_change_slider = true;
         timer.start();
     }
 
@@ -102,6 +126,7 @@ public class Model extends Observable implements Serializable {
         with_timer = false;
         play = false;
         has_saved = false;
+        play_back = false;
     }
 
     public int get_slider_pre() {

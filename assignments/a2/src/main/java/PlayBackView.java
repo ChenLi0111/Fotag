@@ -4,6 +4,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Observer;
 import java.util.Observable;
 
@@ -15,6 +16,7 @@ public class PlayBackView extends JPanel implements Observer {
     private JSlider slider = new JSlider(min_stroke, max_stroke, min_stroke);
     private JButton start = new JButton(new ImageIcon("images/start.png"));
     private JButton end = new JButton(new ImageIcon("images/end.png"));
+    private JButton play_back = new JButton(new ImageIcon("images/play_back.png"));
 
     private Model model;
 
@@ -57,6 +59,14 @@ public class PlayBackView extends JPanel implements Observer {
                 //System.out.println("start");
             }
         });
+
+        play_back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.set_play_back();
+            }
+        });
     }
 
     //Create a new View.
@@ -76,6 +86,7 @@ public class PlayBackView extends JPanel implements Observer {
         gc.weightx = 0.1; // the proportion of space to give this column
         this.add(start, gc);
         this.add(end, gc);
+        this.add(play_back, gc);
     }
 
     private void update_slider() {
@@ -94,8 +105,6 @@ public class PlayBackView extends JPanel implements Observer {
             slider.setValue(max_stroke);
             model.set_need_change_slider(false);
         }
-
-
     }
 
     //Update with data from the model.
