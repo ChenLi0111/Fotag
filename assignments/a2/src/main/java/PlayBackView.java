@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observer;
 import java.util.Observable;
 
@@ -26,6 +28,35 @@ public class PlayBackView extends JPanel implements Observer {
         slider.setPaintTicks(true);
     }
 
+    private void config_button() {
+        play.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.set_play();
+                System.out.println("play");
+            }
+        });
+
+        end.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.set_end();
+                System.out.println("end");
+            }
+        });
+
+        start.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                model.set_start();
+                System.out.println("start");
+            }
+        });
+    }
+
     //Create a new View.
     PlayBackView(Model model) {
         this.model = model;
@@ -35,6 +66,7 @@ public class PlayBackView extends JPanel implements Observer {
         GridBagConstraints gc = new GridBagConstraints();
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.weightx = 0.1; // the proportion of space to give this column
+        config_button();
         this.add(play, gc);
         config_slider();
         gc.weightx = 0.7; // the proportion of space to give this column
@@ -51,10 +83,15 @@ public class PlayBackView extends JPanel implements Observer {
             slider.setMajorTickSpacing((int) space);
         }
 
-        if (model.get_need_change_slider() == true) {
+        if (model.get_need_change_slider() == true && model.get_with_timer() == true) {
+            slider.setValue(model.get_slider_pre());
+            model.set_need_change_slider(false);
+        } else if (model.get_need_change_slider() == true) {
             slider.setValue(max_stroke);
             model.set_need_change_slider(false);
         }
+
+
     }
 
     //Update with data from the model.
@@ -62,6 +99,5 @@ public class PlayBackView extends JPanel implements Observer {
     public void update(Observable arg0, Object arg1) {
         update_slider();
         System.out.println("PlayBackView: Model changed!");
-
     }
 }
