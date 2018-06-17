@@ -9,10 +9,10 @@ public class PlayBackView extends JPanel implements Observer {
     private int max_stroke = 100;
     private int min_stroke = 0;
 
-    private JButton play = new JButton("Play");
+    private JButton play = new JButton(new ImageIcon("images/play.png"));
     private JSlider slider = new JSlider(min_stroke, max_stroke, min_stroke);
-    private JButton start = new JButton("Start");
-    private JButton end = new JButton("End");
+    private JButton start = new JButton(new ImageIcon("images/start.png"));
+    private JButton end = new JButton(new ImageIcon("images/end.png"));
 
     private Model model;
 

@@ -25,7 +25,6 @@ public class DrawView extends JPanel implements Observer {
                 // set scale
                 shape.setScale(1.0f);
                 model.add_shape(shape);
-
                 repaint();
             }
         });

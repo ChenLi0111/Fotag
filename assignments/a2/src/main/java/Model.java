@@ -1,7 +1,11 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.Observable;
 import java.util.ArrayList;
+
 
 public class Model extends Observable implements Serializable {
     private ArrayList<Shape> shape_collection = new ArrayList<Shape>();
@@ -12,6 +16,21 @@ public class Model extends Observable implements Serializable {
     private ArrayList<Shape> print_shape_collection = new ArrayList<Shape>();
 
     private boolean need_change_slider = false;
+
+    private Timer timer;
+
+    private void config_timer() {
+        timer.setDelay(100);
+        timer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (slider_pre < 100) {
+                    slider_pre++;
+                }
+            }
+        });
+    }
+
 
     Model() {
         setChanged();
