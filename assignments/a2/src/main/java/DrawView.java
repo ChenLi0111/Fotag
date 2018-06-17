@@ -66,6 +66,6 @@ public class DrawView extends JPanel implements Observer {
     public void update(Observable arg0, Object arg1) {
         revalidate();
         repaint();
-        System.out.println("DrawView: Model changed!");
+        //System.out.println("DrawView: Model changed!");
     }
 }

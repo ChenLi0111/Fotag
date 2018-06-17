@@ -58,7 +58,7 @@ public class ColorLineView extends JPanel implements Observer {
     }
 
     private void config_color_button() {
-        System.out.println("config color");
+        //System.out.println("config color");
         red_button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -140,7 +140,7 @@ public class ColorLineView extends JPanel implements Observer {
     }
 
     private void config_thickness_button() {
-        System.out.println("config thickness");
+        //System.out.println("config thickness");
         thick_3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -233,7 +233,7 @@ public class ColorLineView extends JPanel implements Observer {
     //Update with data from the model.i
     @Override
     public void update(Observable arg0, Object arg1) {
-        System.out.println("ColorLineView: Model changed!");
+        //System.out.println("ColorLineView: Model changed!");
 
         //update selected color
         now_color.setBackground(model.get_color());

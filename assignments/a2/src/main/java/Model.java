@@ -21,14 +21,13 @@ public class Model extends Observable implements Serializable {
     private javax.swing.Timer timer = new javax.swing.Timer(50, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("here");
             if (slider_pre < 100 && play == true) {
                 //System.out.println(Integer.toString(slider_pre));
                 slider_pre = slider_pre + 1;
                 set_play_prentage(slider_pre);
+                update_collection_now();
                 need_change_slider = true;
                 System.out.println(Integer.toString(slider_pre));
-
             }
             if (slider_pre == 100) {
                 play = false;
@@ -42,27 +41,27 @@ public class Model extends Observable implements Serializable {
     }
 
     public void set_play() {
+        if (shape_collection.size() == 0) {return;}
         play = true;
         timer.start();
-        if (slider_pre == 100) {
-            timer.stop();
-        }
     }
 
     public void set_end() {
-        play = false;
+        if (shape_collection.size() == 0) {return;}
         set_play_prentage(100);
         need_change_slider = true;
+        setChanged();
+        notifyObservers();
     }
 
     public void set_start() {
-        set_play_prentage(0);
+        if (shape_collection.size() == 0) {return;}
+        slider_pre = 0;
+        set_play_prentage(slider_pre);
         need_change_slider = true;
         play = true;
+        with_timer = true;
         timer.start();
-        if (slider_pre == 100) {
-            timer.stop();
-        }
     }
 
     Model() {
@@ -71,6 +70,10 @@ public class Model extends Observable implements Serializable {
 
     public void set_play_prentage(int i) {
         slider_pre = i;
+        update_collection_now();
+    }
+
+    public void update_collection_now() {
         update_collection();
         setChanged();
         notifyObservers();
@@ -91,8 +94,8 @@ public class Model extends Observable implements Serializable {
         }
 
         int need_print = (int) (point_count * slider_pre / 100);
-        System.out.println("total: " + Integer.toString(point_count));
-        System.out.println("need to print: " + Integer.toString(need_print));
+        //System.out.println("total: " + Integer.toString(point_count));
+        //System.out.println("need to print: " + Integer.toString(need_print));
         int keep_track = 0;
         int i;
         for (i = 0; keep_track <= need_print; ++i) {

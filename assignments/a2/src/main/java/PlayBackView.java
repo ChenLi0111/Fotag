@@ -23,6 +23,7 @@ public class PlayBackView extends JPanel implements Observer {
             public void stateChanged(ChangeEvent e) {
                 JSlider s = (JSlider)e.getSource();
                 model.set_play_prentage(s.getValue());
+                model.update_collection_now();
             }
         });
         slider.setPaintTicks(true);
@@ -85,9 +86,11 @@ public class PlayBackView extends JPanel implements Observer {
         }
 
         if (model.get_need_change_slider() == true && model.get_with_timer() == true) {
+            System.out.println("first if");
             slider.setValue(model.get_slider_pre());
             model.set_need_change_slider(false);
         } else if (model.get_need_change_slider() == true) {
+            System.out.println("second if");
             slider.setValue(max_stroke);
             model.set_need_change_slider(false);
         }
