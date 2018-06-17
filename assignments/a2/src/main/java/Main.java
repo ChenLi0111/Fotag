@@ -11,22 +11,26 @@ public class Main {
 
 		// create DrawView, tell it about model (and controller)
 		DrawView drawview = new DrawView(model);
+		drawview.setBorder(BorderFactory.createEtchedBorder());
 		// tell Model about DrawView.
 		model.addObserver(drawview);
 		
 		// create ColorView, tell it about model (and controller)
 		ColorLineView colorlineview = new ColorLineView(model);
 		colorlineview.setPreferredSize(new Dimension(150, 300));
+		colorlineview.setBorder(BorderFactory.createEtchedBorder());
 		// tell Model about ColorLineView.
 		model.addObserver(colorlineview);
 
 		// create PlayBackView, tell it about model (and controller)
 		PlayBackView playbackview = new PlayBackView(model);
-		// tell Model about PlayBackView. 
+		playbackview.setBorder(BorderFactory.createEtchedBorder());
+		// tell Model about PlayBackView.
 		model.addObserver(playbackview);
 
 		// create TopBarView, tell it about model (and controller)
 		MenuBarView menubarview = new MenuBarView(model);
+		menubarview.setBorder(BorderFactory.createEtchedBorder());
 		// tell Model about MenuBarView.
 		model.addObserver(menubarview);
 
