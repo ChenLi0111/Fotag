@@ -140,8 +140,5 @@ class Shape implements Serializable {
             else
                 g2.drawPolyline(xpoints, ypoints, npoints);
         }
-
-        // reset the transform to what it was before we drew the shape
-//        g2.setTransform(M);            
     }
 }

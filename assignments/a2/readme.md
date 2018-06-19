@@ -5,7 +5,7 @@ This drawing lets users draw on the screen using a mouse. <br />
 Support standard drawing features (e.g. stroke width, multiple colors, window resizing). <br />
 Support using a scrubber to scroll back or forward through the steps used to create a drawing.<br />
 Support saving and loading ".ser" file.<br />
-Support customize color.<br />
+Support using customize color.<br />
 
 ## To start:<br />
 Type "./gradlew run" under a2 folder to run on macOS.<br />
@@ -24,3 +24,4 @@ macOS High Sierra version 10.13.4<br />
 
 ## Please Note:<br />
 This application needs vecmath.jar to get started.<br />
+The minimum size of this application is 440 x 330.<br />

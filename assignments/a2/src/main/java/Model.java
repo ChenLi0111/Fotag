@@ -214,7 +214,7 @@ public class Model extends Observable implements Serializable {
 
     public void change_color(Color c) {
         select_color = c;
-        System.out.println("changed" + c.toString());
+        //System.out.println("changed" + c.toString());
         setChanged();
         notifyObservers();
     }
@@ -225,7 +225,7 @@ public class Model extends Observable implements Serializable {
 
     public void change_thickness(float f) {
         select_thickness = f;
-        System.out.println("changed " + Float.toString(f));
+        //System.out.println("changed " + Float.toString(f));
         setChanged();
         notifyObservers();
     }
