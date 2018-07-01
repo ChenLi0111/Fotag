@@ -3,8 +3,16 @@ import java.util.Observable;
 
 public class ImageCollectionModel extends Observable {
     private ArrayList<ImageModel> imagemodel_list = new ArrayList<ImageModel>();
-    private int view_mode = 1;
+    private int view_mode = 0;
     private int star_number = 0;
+
+    public ArrayList<ImageModel> get_imagemodel_list() {
+        return imagemodel_list;
+    }
+
+    public void add_to_imagemodel_list(ImageModel i) {
+        imagemodel_list.add(i);
+    }
 
     public void set_view_mode(int s) {
         view_mode = s;

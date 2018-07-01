@@ -1,7 +1,9 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,6 +25,24 @@ public class ToolBar extends JPanel implements Observer {
     private ImageIcon red_star = new ImageIcon("images/redstar.png");
     private JButton clear_filter = new JButton(new ImageIcon("images/empty.png"));
 
+    private void call_load() {
+        JFileChooser file_chooser = new JFileChooser();
+
+        FileNameExtensionFilter file_ext_filter = new FileNameExtensionFilter("image file", "png", "jpg");
+        file_chooser.setFileFilter(file_ext_filter);
+        file_chooser.setMultiSelectionEnabled(true);
+
+        int load_or_not = file_chooser.showOpenDialog(null);
+        if (load_or_not == 1) { // cancel
+            return;
+        } else { // load
+            File[] file = file_chooser.getSelectedFiles();
+            for (File f: file) {
+                System.out.println("here");
+            }
+        }
+    }
+    
     private void config_button() {
         grid_layout.setSize(new Dimension(40, 40));
         list_layout.setSize(new Dimension(40, 40));
@@ -108,6 +128,14 @@ public class ToolBar extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 imagecollectionmodel.set_star_number(5);
+            }
+        });
+
+        load.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                call_load();
             }
         });
 
