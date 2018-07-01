@@ -1,9 +1,12 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -38,11 +41,19 @@ public class ToolBar extends JPanel implements Observer {
         } else { // load
             File[] file = file_chooser.getSelectedFiles();
             for (File f: file) {
-                System.out.println("here");
+                BufferedImage buffer_image = null;
+                try {
+                    buffer_image = ImageIO.read(f);
+                } catch (IOException e) {}
+
+                ImageModel i_m = new ImageModel(imagecollectionmodel, f);
+                ImageView i_v = new ImageView(i_m);
+                imagecollectionmodel.add_view_to_collection(i_v);
+                imagecollectionmodel.add_to_imagemodel_list(i_m);
             }
         }
     }
-    
+
     private void config_button() {
         grid_layout.setSize(new Dimension(40, 40));
         list_layout.setSize(new Dimension(40, 40));

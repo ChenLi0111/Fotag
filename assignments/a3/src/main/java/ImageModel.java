@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Observable;
 
 public class ImageModel extends Observable {
@@ -36,10 +37,10 @@ public class ImageModel extends Observable {
         notifyObservers();
     }
 
-    ImageModel(ImageCollectionModel imagecollectionmodel, String path) {
+    ImageModel(ImageCollectionModel imagecollectionmodel, File f) {
         this.imagecollectionmodel = imagecollectionmodel;
-        this.path = path;
-
+        this.path = f.getAbsolutePath();
+        System.out.println("file path: " + this.path);
         setChanged();
     }
 }

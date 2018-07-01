@@ -2,9 +2,19 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class ImageCollectionModel extends Observable {
+    private ImageCollectionView imagecollectionview;
+
     private ArrayList<ImageModel> imagemodel_list = new ArrayList<ImageModel>();
     private int view_mode = 0;
     private int star_number = 0;
+
+    public void set_imagecollectionview(ImageCollectionView i) {
+        imagecollectionview = i;
+    }
+
+    public void add_view_to_collection(ImageView i) {
+        imagecollectionview.add_imageview_list(i);
+    }
 
     public ArrayList<ImageModel> get_imagemodel_list() {
         return imagemodel_list;

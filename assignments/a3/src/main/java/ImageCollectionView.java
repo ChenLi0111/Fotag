@@ -7,8 +7,17 @@ public class ImageCollectionView extends JPanel implements Observer {
     private ImageCollectionModel imagecollectionmodel;
     private ArrayList<ImageView> imageview_list = new ArrayList<ImageView>();
 
+    public void add_imageview_list(ImageView i) {
+        imageview_list.add(i);
+    }
+
+    public ArrayList<ImageView> get_imageview_list() {
+        return imageview_list;
+    }
+
     ImageCollectionView(ImageCollectionModel imagecollectionmodel) {
         this.imagecollectionmodel = imagecollectionmodel;
+        imagecollectionmodel.set_imagecollectionview(this);
     }
 
     @Override
