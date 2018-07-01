@@ -8,6 +8,7 @@ import java.util.Observer;
 public class ToolBar extends JPanel implements Observer {
     private ImageCollectionModel imagecollectionmodel;
 
+    private ButtonGroup button_group = new ButtonGroup();
     private JToggleButton grid_layout = new JToggleButton(new ImageIcon("images/grid.png"));
     private JToggleButton list_layout = new JToggleButton(new ImageIcon("images/list.png"));
     private JLabel fotlag = new JLabel("Fotlag!");
@@ -22,13 +23,12 @@ public class ToolBar extends JPanel implements Observer {
     private ImageIcon red_star = new ImageIcon("images/redstar.png");
     private JButton clear_filter = new JButton(new ImageIcon("images/empty.png"));
 
-
-    //private void set_button_listener() {}
-
     private void config_button() {
         grid_layout.setSize(new Dimension(40, 40));
-
         list_layout.setSize(new Dimension(40, 40));
+
+        button_group.add(grid_layout);
+        button_group.add(list_layout);
 
         fotlag.setFont(new Font("Dialog", 1, 25));
 
