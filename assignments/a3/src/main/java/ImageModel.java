@@ -5,5 +5,6 @@ public class ImageModel extends Observable {
 
     ImageModel(ImageCollectionModel imagecollectionmodel) {
         this.imagecollectionmodel = imagecollectionmodel;
+        setChanged();
     }
 }
