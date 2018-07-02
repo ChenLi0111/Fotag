@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ToolBar extends JPanel implements Observer {
+public class ToolBarView extends JPanel implements Observer {
     private ImageCollectionModel imagecollectionmodel;
 
     private ButtonGroup button_group = new ButtonGroup();
@@ -160,7 +160,7 @@ public class ToolBar extends JPanel implements Observer {
         });
     }
 
-    ToolBar(ImageCollectionModel imagecollectionmodel) {
+    ToolBarView(ImageCollectionModel imagecollectionmodel) {
         this.imagecollectionmodel = imagecollectionmodel;
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));

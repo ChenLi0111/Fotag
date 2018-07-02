@@ -11,15 +11,15 @@ public class Main {
 		ImageCollectionView imagecollectionview = new ImageCollectionView(imagecollectionmodel);
 		imagecollectionmodel.addObserver(imagecollectionview);
 
-		ToolBar toolbar = new ToolBar(imagecollectionmodel);
-		imagecollectionmodel.addObserver(toolbar);
+		ToolBarView toolbarview = new ToolBarView(imagecollectionmodel);
+		imagecollectionmodel.addObserver(toolbarview);
 
 		imagecollectionmodel.notifyObservers();
 
 		JPanel p = new JPanel(new BorderLayout());
 		frame.getContentPane().add(p);
 
-		p.add(toolbar, BorderLayout.NORTH);
+		p.add(toolbarview, BorderLayout.NORTH);
 
 		JScrollPane scrollpane = new JScrollPane(imagecollectionview, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		p.add(scrollpane, BorderLayout.CENTER);
