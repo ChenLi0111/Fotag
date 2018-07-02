@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Observer;
 import java.util.Observable;
@@ -32,8 +33,35 @@ public class ImageView extends JPanel implements Observer {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                //TODO enlarge
-                JFrame jframe = new JFrame();
+
+                JFrame jframe = new JFrame(imagemodel.get_name());
+                JPanel jpanel = new JPanel();
+                JLabel jlabel = new JLabel();
+
+                BufferedImage buffer_image = null;
+                File f = new File(imagemodel.get_path());
+                try {
+                    buffer_image = ImageIO.read(f);
+                } catch (IOException ioe) {}
+
+                //System.out.println("width = " + buffer_image.getWidth());
+                //System.out.println("Height = " + buffer_image.getHeight());
+
+                int scale = 1;
+                int width = buffer_image.getWidth();
+                int height = buffer_image.getHeight();
+                while (width / scale > 800 || height / scale > 600) {
+                    scale++;
+                }
+
+                java.awt.Image ii = buffer_image.getScaledInstance(width / scale,height /scale, java.awt.Image.SCALE_SMOOTH);
+                jlabel.setIcon(new ImageIcon(ii));
+
+                jpanel.add(jlabel);
+                jframe.add(jpanel);
+                jframe.setMaximumSize(new Dimension(800,600));
+                jframe.pack();
+                jframe.setVisible(true);
             }
         });
 
