@@ -10,10 +10,12 @@ public class ImageCollectionModel extends Observable {
 
     public void set_imagecollectionview(ImageCollectionView i) {
         imagecollectionview = i;
+        tell();
     }
 
     public void add_view_to_collection(ImageView i) {
         imagecollectionview.add_imageview_list(i);
+        tell();
     }
 
     public ArrayList<ImageModel> get_imagemodel_list() {
@@ -22,6 +24,7 @@ public class ImageCollectionModel extends Observable {
 
     public void add_to_imagemodel_list(ImageModel i) {
         imagemodel_list.add(i);
+        tell();
     }
 
     public void set_view_mode(int s) {

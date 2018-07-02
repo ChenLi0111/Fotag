@@ -40,14 +40,15 @@ public class ToolBar extends JPanel implements Observer {
             return;
         } else { // load
             File[] file = file_chooser.getSelectedFiles();
+            BufferedImage buffer_image = null;
             for (File f: file) {
-                BufferedImage buffer_image = null;
                 try {
                     buffer_image = ImageIO.read(f);
                 } catch (IOException e) {}
 
                 ImageModel i_m = new ImageModel(imagecollectionmodel, f);
                 ImageView i_v = new ImageView(i_m);
+                i_m.set_view(i_v);
                 imagecollectionmodel.add_view_to_collection(i_v);
                 imagecollectionmodel.add_to_imagemodel_list(i_m);
             }
