@@ -29,12 +29,10 @@ public class ImageCollectionView extends JPanel implements Observer {
         while(total_image % coloum_number != 0) {
             total_image++;
         }
-        int row_number = total_image / coloum_number;
-
         //System.out.println("coloum_number = " + coloum_number);
         //System.out.println("row_number = " + row_number);
 
-        this.setLayout(new GridLayout(row_number, coloum_number));
+        this.setLayout(new GridLayout(0, coloum_number));
 
         for (ImageView j: imageview_list) {
             if (j.get_imagemodel().get_user_rating() >= imagecollectionmodel.get_star_number()) {
