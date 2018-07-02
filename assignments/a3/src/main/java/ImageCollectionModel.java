@@ -16,7 +16,7 @@ public class ImageCollectionModel extends Observable {
 
     public void set_frame_width(int i) {
         frame_width = i;
-        System.out.println("frame width = " + frame_width);
+        //System.out.println("frame width = " + frame_width);
         tell();
     }
 

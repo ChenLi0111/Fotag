@@ -4,10 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Observer;
 import java.util.Observable;
 
@@ -36,6 +33,7 @@ public class ImageView extends JPanel implements Observer {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 //TODO enlarge
+                JFrame jframe = new JFrame();
             }
         });
 
@@ -89,27 +87,18 @@ public class ImageView extends JPanel implements Observer {
     }
 
     public void grid_view() {
-        String path = imagemodel.get_path();
-        File f = new File(path);
         BufferedImage buffer_image = null;
         try {
-            buffer_image = ImageIO.read(f);
+            buffer_image = ImageIO.read(imagemodel.get_file());
         } catch (IOException e) {}
 
         java.awt.Image i = buffer_image.getScaledInstance(270,200, java.awt.Image.SCALE_SMOOTH);
         ImageIcon temp = new ImageIcon(i);
         image.setIcon(temp);
 
-        image_name.setText(f.getName());
+        image_name.setText(imagemodel.get_name());
 
-        BasicFileAttributes a = null;
-        try {
-            a = Files.readAttributes(f.toPath(), BasicFileAttributes.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        image_date.setText(a.creationTime().toString());
+        image_date.setText(imagemodel.get_creation_date());
 
         this.setPreferredSize(new Dimension(300, 350));
         this.setLayout(new GridBagLayout());
@@ -152,27 +141,18 @@ public class ImageView extends JPanel implements Observer {
     }
 
     public void list_view() {
-        String path = imagemodel.get_path();
-        File f = new File(path);
         BufferedImage buffer_image = null;
         try {
-            buffer_image = ImageIO.read(f);
+            buffer_image = ImageIO.read(imagemodel.get_file());
         } catch (IOException e) {}
 
         java.awt.Image i = buffer_image.getScaledInstance(250,200, java.awt.Image.SCALE_SMOOTH);
         ImageIcon temp = new ImageIcon(i);
         image.setIcon(temp);
 
-        image_name.setText(f.getName());
+        image_name.setText(imagemodel.get_name());
 
-        BasicFileAttributes a = null;
-        try {
-            a = Files.readAttributes(f.toPath(), BasicFileAttributes.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        image_date.setText(a.creationTime().toString());
+        image_date.setText(imagemodel.get_creation_date());
 
         this.setPreferredSize(new Dimension(570, 220));
         this.setLayout(new GridBagLayout());

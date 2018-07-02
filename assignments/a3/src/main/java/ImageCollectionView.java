@@ -31,8 +31,8 @@ public class ImageCollectionView extends JPanel implements Observer {
         }
         int row_number = total_image / coloum_number;
 
-        System.out.println("coloum_number = " + coloum_number);
-        System.out.println("row_number = " + row_number);
+        //System.out.println("coloum_number = " + coloum_number);
+        //System.out.println("row_number = " + row_number);
 
         this.setLayout(new GridLayout(row_number, coloum_number));
 

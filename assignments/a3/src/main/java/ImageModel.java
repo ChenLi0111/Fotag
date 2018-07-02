@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Observable;
 
 public class ImageModel extends Observable {
@@ -7,8 +10,14 @@ public class ImageModel extends Observable {
     private String path = "";
     private String creation_date = "";
     private int user_rating = 0;
+    private String name = "";
+    private File f;
 
     private int view_mode = 0;
+
+    public File get_file() {
+        return f;
+    }
 
     public void set_view_mode(int i) {
         view_mode = i;
@@ -19,22 +28,16 @@ public class ImageModel extends Observable {
         return this.imagecollectionmodel.get_view_mode();
     }
 
-    public void set_path(String s) {
-        path = s;
-        tell_2();
-    }
-
     public String get_path() {
         return path;
     }
 
-    public void set_creation_date(String s) {
-        creation_date = s;
-        tell_2();
-    }
-
     public String get_creation_date() {
         return creation_date;
+    }
+
+    public String get_name() {
+        return name;
     }
 
     public void set_user_rating(int i) {
@@ -54,7 +57,18 @@ public class ImageModel extends Observable {
 
     ImageModel(ImageCollectionModel imagecollectionmodel, File f) {
         this.imagecollectionmodel = imagecollectionmodel;
+        this.f = f;
         this.path = f.getAbsolutePath();
+        this.name = f.getName();
+
+        BasicFileAttributes a = null;
+        try {
+            a = Files.readAttributes(f.toPath(), BasicFileAttributes.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.creation_date = a.creationTime().toString();
+
         System.out.println("file path: " + this.path);
         setChanged();
     }
