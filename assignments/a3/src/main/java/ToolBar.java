@@ -48,7 +48,7 @@ public class ToolBar extends JPanel implements Observer {
 
                 ImageModel i_m = new ImageModel(imagecollectionmodel, f);
                 ImageView i_v = new ImageView(i_m);
-                i_m.set_view(i_v);
+                i_m.addObserver(i_v);
                 imagecollectionmodel.add_view_to_collection(i_v);
                 imagecollectionmodel.add_to_imagemodel_list(i_m);
             }

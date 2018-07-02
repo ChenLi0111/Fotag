@@ -32,7 +32,6 @@ public class ImageCollectionView extends JPanel implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
         System.out.println("ImageCollectionView: update");
-        this.removeAll();
         if (imagecollectionmodel.get_view_mode() == 0) {
             grid_mode();
         } else if (imagecollectionmodel.get_view_mode() == 1) {

@@ -3,16 +3,10 @@ import java.util.Observable;
 
 public class ImageModel extends Observable {
     private ImageCollectionModel imagecollectionmodel;
-    private ImageView imageview;
 
     private String path = "";
     private String creation_date = "";
     private int user_rating = 0;
-
-    public void set_view(ImageView i) {
-        imageview = i;
-        this.addObserver(i);
-    }
 
     public int get_view_mode() {
         return this.imagecollectionmodel.get_view_mode();
@@ -48,8 +42,7 @@ public class ImageModel extends Observable {
 
     public void tell_2() {
         setChanged();
-        notifyObservers(imageview);
-        //System.out.println("tell_2");
+        notifyObservers();
     }
 
     ImageModel(ImageCollectionModel imagecollectionmodel, File f) {
