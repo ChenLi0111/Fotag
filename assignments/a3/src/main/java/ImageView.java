@@ -159,7 +159,7 @@ public class ImageView extends JPanel implements Observer {
             buffer_image = ImageIO.read(f);
         } catch (IOException e) {}
 
-        java.awt.Image i = buffer_image.getScaledInstance(300,250, java.awt.Image.SCALE_SMOOTH);
+        java.awt.Image i = buffer_image.getScaledInstance(250,200, java.awt.Image.SCALE_SMOOTH);
         ImageIcon temp = new ImageIcon(i);
         image.setIcon(temp);
 
@@ -174,7 +174,7 @@ public class ImageView extends JPanel implements Observer {
 
         image_date.setText(a.creationTime().toString());
 
-        this.setPreferredSize(new Dimension(620, 270));
+        this.setPreferredSize(new Dimension(570, 220));
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createEtchedBorder());
 

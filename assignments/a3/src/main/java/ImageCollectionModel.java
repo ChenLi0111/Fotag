@@ -8,6 +8,18 @@ public class ImageCollectionModel extends Observable {
     private int view_mode = 0;
     private int star_number = 0;
 
+    private int frame_width = 0;
+
+    public int get_frame_width() {
+        return frame_width;
+    }
+
+    public void set_frame_width(int i) {
+        frame_width = i;
+        System.out.println("frame width = " + frame_width);
+        tell();
+    }
+
     public void set_imagecollectionview(ImageCollectionView i) {
         imagecollectionview = i;
         tell();
