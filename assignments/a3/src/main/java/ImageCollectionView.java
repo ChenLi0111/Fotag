@@ -21,13 +21,22 @@ public class ImageCollectionView extends JPanel implements Observer {
     }
 
     public void grid_mode() {
-        for (JPanel j: imageview_list) {
-            System.out.println("new added to imageview_list");
-            this.add(j);
+        removeAll();
+        for (ImageView j: imageview_list) {
+            if (j.get_imagemodel().get_user_rating() >= imagecollectionmodel.get_star_number()) {
+                this.add(j);
+            }
         }
     }
 
-    public void list_mode() {}
+    public void list_mode() {
+        removeAll();
+        for (ImageView j: imageview_list) {
+            if (j.get_imagemodel().get_user_rating() >= imagecollectionmodel.get_star_number()) {
+                this.add(j);
+            }
+        }
+    }
 
     @Override
     public void update(Observable arg0, Object arg1) {

@@ -29,6 +29,9 @@ public class ImageCollectionModel extends Observable {
 
     public void set_view_mode(int s) {
         view_mode = s;
+        for (ImageModel i: imagemodel_list) {
+            i.set_view_mode(view_mode);
+        }
         tell();
     }
 

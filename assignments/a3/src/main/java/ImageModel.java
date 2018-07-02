@@ -8,6 +8,13 @@ public class ImageModel extends Observable {
     private String creation_date = "";
     private int user_rating = 0;
 
+    private int view_mode = 0;
+
+    public void set_view_mode(int i) {
+        view_mode = i;
+        tell_2();
+    }
+
     public int get_view_mode() {
         return this.imagecollectionmodel.get_view_mode();
     }

@@ -22,6 +22,7 @@ public class ImageView extends JPanel implements Observer {
     private JButton star_3 = new JButton(new ImageIcon("images/star.png"));
     private JButton star_4 = new JButton(new ImageIcon("images/star.png"));
     private JButton star_5 = new JButton(new ImageIcon("images/star.png"));
+    private JButton clear = new JButton(new ImageIcon("images/empty.png"));
     private ImageIcon star = new ImageIcon("images/star.png");
     private ImageIcon red_star = new ImageIcon("images/redstar.png");
 
@@ -77,6 +78,14 @@ public class ImageView extends JPanel implements Observer {
                 imagemodel.set_user_rating(5);
             }
         });
+
+        clear.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                imagemodel.set_user_rating(0);
+            }
+        });
     }
 
     public void grid_view() {
@@ -102,41 +111,112 @@ public class ImageView extends JPanel implements Observer {
 
         image_date.setText(a.creationTime().toString());
 
-        this.setPreferredSize(new Dimension(300, 300));
+        this.setPreferredSize(new Dimension(300, 350));
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createEtchedBorder());
 
-        // create a constraints object
         GridBagConstraints gc = new GridBagConstraints();
 
-        // stretch the widget horizontally and vertically
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.gridy = 0;
         gc.gridx = 0;
         gc.gridwidth = 5; // 1 grid cell wide
         this.add(image, gc);
 
-        // modify gc for the next widget to be added
-        gc.gridwidth = 5;
-        gc.gridheight = 1;
         gc.gridy = 1;
         this.add(image_name, gc);
+
         gc.gridy = 2;
         this.add(image_date, gc);
+
         gc.gridy = 3;
         gc.gridwidth = 1;
         this.add(star_1, gc);
+
         gc.gridx = 1;
         this.add(star_2, gc);
+
         gc.gridx = 2;
         this.add(star_3, gc);
+
         gc.gridx = 3;
         this.add(star_4, gc);
+
         gc.gridx = 4;
         this.add(star_5, gc);
+
+        gc.gridy = 4;
+        gc.gridx = 0;
+        gc.gridwidth = 5;
+        this.add(clear, gc);
     }
 
-    public void list_view() {}
+    public void list_view() {
+        String path = imagemodel.get_path();
+        File f = new File(path);
+        BufferedImage buffer_image = null;
+        try {
+            buffer_image = ImageIO.read(f);
+        } catch (IOException e) {}
+
+        java.awt.Image i = buffer_image.getScaledInstance(300,250, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon temp = new ImageIcon(i);
+        image.setIcon(temp);
+
+        image_name.setText(f.getName());
+
+        BasicFileAttributes a = null;
+        try {
+            a = Files.readAttributes(f.toPath(), BasicFileAttributes.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        image_date.setText(a.creationTime().toString());
+
+        this.setPreferredSize(new Dimension(620, 270));
+        this.setLayout(new GridBagLayout());
+        this.setBorder(BorderFactory.createEtchedBorder());
+
+        GridBagConstraints gc = new GridBagConstraints();
+
+        gc.fill = GridBagConstraints.HORIZONTAL;
+        gc.gridy = 0;
+        gc.gridx = 0;
+        gc.gridwidth = 1; // 1 grid cell wide
+        gc.gridheight = 5;
+        this.add(image, gc);
+
+        gc.gridx = 1;
+        gc.gridy = 1;
+        gc.gridwidth = 5;
+        gc.gridheight = 1;
+        this.add(image_name, gc);
+
+        gc.gridy = 2;
+        this.add(image_date, gc);
+
+        gc.gridwidth = 1;
+        gc.gridy = 3;
+        this.add(star_1, gc);
+
+        gc.gridx = 2;
+        this.add(star_2, gc);
+
+        gc.gridx = 3;
+        this.add(star_3, gc);
+
+        gc.gridx = 4;
+        this.add(star_4, gc);
+
+        gc.gridx = 5;
+        this.add(star_5, gc);
+
+        gc.gridx = 1;
+        gc.gridy = 4;
+        gc.gridwidth = 5;
+        this.add(clear, gc);
+    }
 
     ImageView(ImageModel imagemodel) {
         this.imagemodel = imagemodel;
@@ -152,6 +232,7 @@ public class ImageView extends JPanel implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
         System.out.println("ImageView: update");
+        removeAll();
 
         if (imagemodel.get_view_mode() == 0) {
             grid_view();
