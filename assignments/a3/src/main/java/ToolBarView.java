@@ -16,7 +16,7 @@ public class ToolBarView extends JPanel implements Observer {
     private ButtonGroup button_group = new ButtonGroup();
     private JToggleButton grid_layout = new JToggleButton(new ImageIcon("images/grid.png"));
     private JToggleButton list_layout = new JToggleButton(new ImageIcon("images/list.png"));
-    private JLabel fotlag = new JLabel("Fotlag!");
+    private JLabel fotlag = new JLabel("Fotag!");
     private JButton load = new JButton(new ImageIcon("images/load.png"));
     private JLabel filter_by = new JLabel("Filter by: ");
     private JButton star_1 = new JButton("");
