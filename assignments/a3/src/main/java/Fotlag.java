@@ -29,7 +29,7 @@ public class Fotlag {
 
 	public void call_load() {
 		File f = new File("old_state");
-		if (f.exists()) {
+		if (f.exists() == true) {
 			try {
 				BufferedReader buffer = new BufferedReader(new FileReader(f));
 				String line = "";
@@ -39,6 +39,7 @@ public class Fotlag {
 					//System.out.println(line);
 
 					File temp = new File(line);
+					if(temp.exists() == false) {continue;}
 
 					ImageModel i_m = new ImageModel(imagecollectionmodel, temp);
 					ImageView i_v = new ImageView(i_m);

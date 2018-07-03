@@ -237,7 +237,7 @@ public class ImageView extends JPanel implements Observer {
 
     @Override
     public void update(Observable arg0, Object arg1) {
-        System.out.println("ImageView: update");
+        //System.out.println("ImageView: update");
         removeAll();
 
         if (imagemodel.get_view_mode() == 0) {

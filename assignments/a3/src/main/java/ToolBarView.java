@@ -30,7 +30,6 @@ public class ToolBarView extends JPanel implements Observer {
 
     private void call_load() {
         JFileChooser file_chooser = new JFileChooser();
-
         FileNameExtensionFilter file_ext_filter = new FileNameExtensionFilter("image file", "png", "jpg");
         file_chooser.setFileFilter(file_ext_filter);
         file_chooser.setMultiSelectionEnabled(true);
@@ -225,7 +224,6 @@ public class ToolBarView extends JPanel implements Observer {
             star_4.setIcon(red_star);
             star_5.setIcon(red_star);
         }
-
-        System.out.println("ToolBar: update");
+        //System.out.println("ToolBar: update");
     }
 }
