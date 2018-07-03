@@ -13,8 +13,7 @@ public class Fotlag {
 
 	public void call_save() {
 		try {
-
-			FileOutputStream fos = new FileOutputStream("save");
+			FileOutputStream fos = new FileOutputStream("old_state");
 			String s = "";
 			for (ImageModel i: this.imagecollectionmodel.get_imagemodel_list()) {
 				s += i.get_path();
@@ -29,7 +28,7 @@ public class Fotlag {
 	}
 
 	public void call_load() {
-		File f = new File("save");
+		File f = new File("old_state");
 		if (f.exists()) {
 			try {
 				BufferedReader buffer = new BufferedReader(new FileReader(f));
@@ -37,7 +36,7 @@ public class Fotlag {
 				while (true) {
 					line = buffer.readLine();
 					if(line == null) {break;}
-					System.out.println(line);
+					//System.out.println(line);
 
 					File temp = new File(line);
 

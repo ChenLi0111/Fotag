@@ -69,7 +69,7 @@ public class ImageModel extends Observable {
         }
         this.creation_date = a.creationTime().toString();
 
-        System.out.println("file path: " + this.path);
+        //System.out.println("file path: " + this.path);
         setChanged();
     }
 }

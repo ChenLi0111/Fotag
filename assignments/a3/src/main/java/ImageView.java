@@ -120,18 +120,17 @@ public class ImageView extends JPanel implements Observer {
             buffer_image = ImageIO.read(imagemodel.get_file());
         } catch (IOException e) {}
 
-        java.awt.Image i = buffer_image.getScaledInstance(270,200, java.awt.Image.SCALE_SMOOTH);
+        java.awt.Image i = buffer_image.getScaledInstance(270, 200, java.awt.Image.SCALE_SMOOTH);
         ImageIcon temp = new ImageIcon(i);
         image.setIcon(temp);
 
         image_name.setText(imagemodel.get_name());
-
         image_date.setText(imagemodel.get_creation_date());
 
         this.setPreferredSize(new Dimension(300, 350));
-        this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createEtchedBorder());
 
+        this.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 
         gc.fill = GridBagConstraints.HORIZONTAL;
@@ -179,13 +178,12 @@ public class ImageView extends JPanel implements Observer {
         image.setIcon(temp);
 
         image_name.setText(imagemodel.get_name());
-
         image_date.setText(imagemodel.get_creation_date());
 
         this.setPreferredSize(new Dimension(570, 220));
-        this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createEtchedBorder());
 
+        this.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 
         gc.fill = GridBagConstraints.HORIZONTAL;
