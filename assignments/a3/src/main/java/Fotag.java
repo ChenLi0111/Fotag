@@ -7,19 +7,33 @@ import java.awt.event.WindowEvent;
 import java.io.*;
 
 public class Fotag {
-    public ImageCollectionModel imagecollectionmodel;
-    public ImageCollectionView imagecollectionview;
-    public ToolBarView toolbarview;
+    private ImageCollectionModel imagecollectionmodel;
+    private ImageCollectionView imagecollectionview;
+    private ToolBarView toolbarview;
+
+    public ImageCollectionModel get_imagecollectionmodel() {
+        return imagecollectionmodel;
+    }
+
+    public ImageCollectionView get_imagecollectionview() {
+        return imagecollectionview;
+    }
+
+    public ToolBarView get_toolbarview() {
+        return toolbarview;
+    }
 
     public void call_save() {
         try {
             FileOutputStream fos = new FileOutputStream("old_state");
+
             String s = "";
-            for (ImageModel i: this.imagecollectionmodel.get_imagemodel_list()) {
+            for (ImageModel i: this.get_imagecollectionmodel().get_imagemodel_list()) {
                 s += i.get_path();
                 s += "\n";
                 //System.out.println(i.get_path());
             }
+
             fos.write(s.getBytes());
             fos.close();
         } catch (IOException e) {
@@ -44,8 +58,8 @@ public class Fotag {
                     ImageModel i_m = new ImageModel(imagecollectionmodel, temp);
                     ImageView i_v = new ImageView(i_m);
                     i_m.addObserver(i_v);
-                    this.imagecollectionmodel.add_view_to_collection(i_v);
-                    this.imagecollectionmodel.add_to_imagemodel_list(i_m);
+                    this.get_imagecollectionmodel().add_view_to_collection(i_v);
+                    this.get_imagecollectionmodel().add_to_imagemodel_list(i_m);
                 }
             } catch (IOException i) {
                 i.printStackTrace();
@@ -66,24 +80,24 @@ public class Fotag {
     }
 
     public static void main(String[] args){
-        JFrame frame = new JFrame("Fotag!");
+        JFrame frame = new JFrame("Fotag");
         Fotag F = new Fotag();
 
         frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
-                F.imagecollectionmodel.set_frame_width(frame.getWidth());
+                F.get_imagecollectionmodel().set_frame_width(frame.getWidth());
             }
         });
 
         JPanel p = new JPanel(new BorderLayout());
         frame.getContentPane().add(p);
 
-        p.add(F.toolbarview, BorderLayout.NORTH);
+        p.add(F.get_toolbarview(), BorderLayout.NORTH);
 
-        JScrollPane scrollpane = new JScrollPane(F.imagecollectionview, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        p.add(scrollpane, BorderLayout.CENTER);
+        JScrollPane scrollbar = new JScrollPane(F.get_imagecollectionview(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        p.add(scrollbar, BorderLayout.CENTER);
 
         frame.setPreferredSize(new Dimension(800,600));
         frame.setMinimumSize(new Dimension(580,280));

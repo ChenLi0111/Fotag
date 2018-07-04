@@ -12,10 +12,6 @@ public class ImageCollectionView extends JPanel implements Observer {
         imageview_list.add(i);
     }
 
-    public ArrayList<ImageView> get_imageview_list() {
-        return imageview_list;
-    }
-
     ImageCollectionView(ImageCollectionModel imagecollectionmodel) {
         this.imagecollectionmodel = imagecollectionmodel;
         imagecollectionmodel.set_imagecollectionview(this);
@@ -27,7 +23,6 @@ public class ImageCollectionView extends JPanel implements Observer {
 
         int coloum_number = (width - 20) / 300;
         //System.out.println("coloum_number = " + coloum_number);
-
         this.setLayout(new GridLayout(0, coloum_number));
 
         for (ImageView j: imageview_list) {
