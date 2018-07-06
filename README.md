@@ -1,4 +1,4 @@
-# CS 349 Assignment 3: Model-View-Controller in Java -- Fotag
+# Model-View-Controller in Java -- Fotag
 
 ## Description:<br />
 Allow users to load images, and display the images and metadata in a dynamic layout.<br />
