@@ -29,11 +29,12 @@ public class Fotag {
 
             String s = "";
             for (ImageModel i: this.get_imagecollectionmodel().get_imagemodel_list()) {
+                s += i.get_user_rating();
                 s += i.get_path();
                 s += "\n";
                 //System.out.println(i.get_path());
             }
-
+            //System.out.println("path = " + s);
             fos.write(s.getBytes());
             fos.close();
         } catch (IOException e) {
@@ -50,7 +51,13 @@ public class Fotag {
                 while (true) {
                     line = buffer.readLine();
                     if(line == null) {break;}
-                    //System.out.println(line);
+                    int rate = 0;
+                    try {
+                        rate = Integer.parseInt(line.substring(0,1));
+                    } catch (NumberFormatException e) {}
+                    line = line.substring(1);
+                    //System.out.println("rate = " + rate);
+                    //System.out.println("line = " + line);
 
                     File temp = new File(line);
                     if(temp.exists() == false) {continue;}
@@ -58,6 +65,7 @@ public class Fotag {
                     ImageModel i_m = new ImageModel(imagecollectionmodel, temp);
                     ImageView i_v = new ImageView(i_m);
                     i_m.addObserver(i_v);
+                    i_m.set_user_rating(rate);
                     this.get_imagecollectionmodel().add_view_to_collection(i_v);
                     this.get_imagecollectionmodel().add_to_imagemodel_list(i_m);
                 }
