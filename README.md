@@ -1,4 +1,4 @@
-# Model-View-Controller in Java -- Fotag
+# Fotag
 
 ## Description:<br />
 Allow users to load images, and display the images and metadata in a dynamic layout.<br />
@@ -22,3 +22,7 @@ macOS High Sierra version 10.13.4<br />
 java version "10.0.1" 2018-04-17<br />
 Java(TM) SE Runtime Environment 18.3 (build 10.0.1+10)<br />
 Java HotSpot(TM) 64-Bit Server VM 18.3 (build 10.0.1+10, mixed mode)<br />
+
+## Screenshots
+![Alt text](https://github.com/yhggf45/Fotag/raw/master/1.png)<br />
+![Alt text](https://github.com/yhggf45/Fotag/raw/master/2.png)
