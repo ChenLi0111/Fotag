@@ -15,7 +15,7 @@ When relaunching the application, the images from the "old_state" will be loaded
 A vertical scrollbar will appear as needed.<br />
 
 ## To start:<br />
-Type "./gradlew run" under a3 folder to run on macOS.<br />
+Use "./gradlew run" to run the application on macOS.<br />
 
 ## Development environment:<br />
 macOS High Sierra version 10.13.4<br />
